@@ -20,8 +20,6 @@ public class FleuryEulerTourFinder {
         this.originalGraph = graph;
         this.auxiliaryGraph = graph.clone();
         this.bridgeIdentifier = bridgeIdentifier;
-        find();
-        classify();
     }
 
     public List<Edge> getEulerTour() {
@@ -32,29 +30,10 @@ public class FleuryEulerTourFinder {
         return classification;
     }
 
-    public void classify() {
-
-        if (eulerTour.size() == originalGraph.getNumberOfEdges()) {
-
-            var firstEdge = eulerTour.getFirst();
-            var lastEdge = eulerTour.getLast();
-
-            if (firstEdge.node1() == lastEdge.node2()) {
-                classification = GraphEulerClassification.EULERIAN;
-            } else {
-                classification = GraphEulerClassification.SEMI_EULERIAN;
-            }
-
-        } else {
-            classification = GraphEulerClassification.NON_EULERIAN;
-        }
-
-    }
-
-    public void find() {
+    public FleuryEulerTourFinder find() {
 
         if (eulerTour != null) {
-            return;
+            return this;
         }
 
         int u = 0;
@@ -67,6 +46,9 @@ public class FleuryEulerTourFinder {
 
         eulerTour = new ArrayList<>();
         getEulerTour(u);
+
+        classify();
+        return this;
 
     }
 
@@ -109,44 +91,27 @@ public class FleuryEulerTourFinder {
             return true;
         }
 
-        List<Integer> visited = new ArrayList<>();
-        int count1 = dfsCount(u, visited);
-
-        auxiliaryGraph.removeEdge(u, v);
-        visited = new ArrayList<>();
-        int count2 = dfsCount(u, visited);
-
-        auxiliaryGraph.addEdge(u, v);
-        return count1 <= count2;
+        return !bridgeIdentifier.isBridge(auxiliaryGraph, new Edge(u, v));
 
     }
 
-    private int dfsCount(Integer startNode, List<Integer> visited) {
+    private void classify() {
 
-        int count = 0;
-        Stack<Integer> stack = new Stack<>();
-        stack.push(startNode);
+        if (eulerTour.size() == originalGraph.getNumberOfEdges()) {
 
-        while (!stack.isEmpty()) {
+            var firstEdge = eulerTour.getFirst();
+            var lastEdge = eulerTour.getLast();
 
-            Integer node = stack.pop();
-
-            if (visited.contains(node)) {
-                continue;
+            if (firstEdge.node1() == lastEdge.node2()) {
+                classification = GraphEulerClassification.EULERIAN;
+            } else {
+                classification = GraphEulerClassification.SEMI_EULERIAN;
             }
 
-            visited.add(node);
-            count++;
-
-            for (int adj : auxiliaryGraph.getNeighbors(node)) {
-                if (!visited.contains(adj)) {
-                    stack.push(adj);
-                }
-            }
-
+        } else {
+            classification = GraphEulerClassification.NON_EULERIAN;
         }
 
-        return count;
-
     }
+
 }

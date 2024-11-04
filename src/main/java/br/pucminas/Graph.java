@@ -116,10 +116,15 @@ public class Graph implements Cloneable {
 
     @Override
     public Graph clone() {
-        try {
-            return (Graph) super.clone();
-        } catch (CloneNotSupportedException e) {
-            throw new AssertionError();
-        }
+
+        Graph clonedGraph = new Graph();
+        clonedGraph.numberOfEdges = this.numberOfEdges;
+
+        this.adjacencyList.forEach((key, value) ->
+                clonedGraph.adjacencyList.put(key, new ArrayList<>(value))
+        );
+
+        return clonedGraph;
     }
+
 }

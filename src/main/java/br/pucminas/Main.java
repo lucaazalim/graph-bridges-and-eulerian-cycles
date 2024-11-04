@@ -1,32 +1,29 @@
 package br.pucminas;
 
-import br.pucminas.bridge.BridgeIdentifier;
 import br.pucminas.bridge.NaiveBridgeIdentifier;
 import br.pucminas.bridge.TarjanBridgeIdentifier;
 import br.pucminas.fleury.FleuryEulerTourFinder;
 
 import java.io.IOException;
-import java.util.List;
 import java.util.Scanner;
 
 public class Main {
 
-    /*public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException {
 
         try (Scanner scanner = new Scanner(System.in)) {
 
             System.out.println("Enter the graph file name: ");
             String fileName = scanner.nextLine();
 
-            System.out.println("Which algorithm do you want to use?");
+            System.out.println("Which method do you want to use?");
             System.out.println("1. Naive");
             System.out.println("2. Tarjan");
-            System.out.println("3. Fleury");
 
-            System.out.println("Enter the algorithm number: ");
-            int algorithm = Integer.parseInt(scanner.nextLine());
+            System.out.println("Enter the method number: ");
+            int method = Integer.parseInt(scanner.nextLine());
 
-            System.out.println("How many times do you want to run the algorithm?");
+            System.out.println("How many times do you want to run the method?");
             int times = Integer.parseInt(scanner.nextLine());
 
             System.out.println("Loading graph...");
@@ -41,11 +38,12 @@ public class Main {
 
                 long startTime = System.currentTimeMillis();
 
-                if (algorithm == 3) {
-                    findEulerTour(graph);
-                } else {
-                    findBridges(graph, algorithm == 1 ? new NaiveBridgeIdentifier() : new TarjanBridgeIdentifier());
-                }
+                var finder = new FleuryEulerTourFinder(
+                        graph,
+                        method == 1 ? new NaiveBridgeIdentifier() : new TarjanBridgeIdentifier()
+                ).find();
+
+                System.out.println("Graph classified as " + finder.getClassification() + ".");
 
                 elapsedTime += System.currentTimeMillis() - startTime;
 
@@ -57,25 +55,5 @@ public class Main {
         }
 
     }
-
-    private static void findBridges(Graph graph, BridgeIdentifier bridgeIdentifier) {
-
-        System.out.println("Finding bridges...");
-
-        List<Edge> bridges = bridgeIdentifier.isBridge(graph, );
-
-        System.out.println("Found " + bridges.size() + " bridges.");
-
-    }
-
-    private static void findEulerTour(Graph graph) {
-
-        System.out.println("Finding Euler tour...");
-
-        FleuryEulerTourFinder eulerTourFinder = new FleuryEulerTourFinder(graph);
-
-        System.out.println("Graph classified as " + eulerTourFinder.getClassification() + ".");
-
-    }*/
 
 }

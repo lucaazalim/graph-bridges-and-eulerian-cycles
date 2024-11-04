@@ -32,7 +32,7 @@ public class FleuryEulerTourFinderTest {
         graph.addEdge(2, 3);
 
         bridgeIdentifiers.forEach((name, bridgeIdentifier) -> {
-            FleuryEulerTourFinder finder = new FleuryEulerTourFinder(graph, bridgeIdentifier);
+            var finder = new FleuryEulerTourFinder(graph, bridgeIdentifier).find();
             assertEquals(GraphEulerClassification.SEMI_EULERIAN, finder.getClassification(), name + " should have classified the graph as semi-eulerian.");
         });
 
@@ -49,7 +49,7 @@ public class FleuryEulerTourFinderTest {
         graph.addEdge(3, 0);
 
         bridgeIdentifiers.forEach((name, bridgeIdentifier) -> {
-            FleuryEulerTourFinder finder = new FleuryEulerTourFinder(graph, bridgeIdentifier);
+            var finder = new FleuryEulerTourFinder(graph, bridgeIdentifier).find();
             assertEquals(GraphEulerClassification.EULERIAN, finder.getClassification(), name + " should have classified the graph as eulerian.");
         });
 
@@ -66,7 +66,7 @@ public class FleuryEulerTourFinderTest {
         graph.addEdge(3, 4);
 
         bridgeIdentifiers.forEach((name, bridgeIdentifier) -> {
-            FleuryEulerTourFinder finder = new FleuryEulerTourFinder(graph, bridgeIdentifier);
+            var finder = new FleuryEulerTourFinder(graph, bridgeIdentifier).find();
             assertEquals(GraphEulerClassification.NON_EULERIAN, finder.getClassification(), name + " should have classified the graph as non-eulerian.");
         });
 
