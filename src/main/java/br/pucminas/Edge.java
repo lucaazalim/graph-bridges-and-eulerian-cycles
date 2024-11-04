@@ -17,4 +17,8 @@ public record Edge(int node1, int node2) {
         return Objects.hash(Math.min(node1, node2), Math.max(node1, node2));
     }
 
+    @Override
+    public String toString() {
+        return node1 + "-" + node2;
+    }
 }

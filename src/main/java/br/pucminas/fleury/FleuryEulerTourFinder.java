@@ -2,6 +2,7 @@ package br.pucminas.fleury;
 
 import br.pucminas.Edge;
 import br.pucminas.Graph;
+import br.pucminas.bridge.BridgeIdentifier;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,12 +11,15 @@ import java.util.Stack;
 public class FleuryEulerTourFinder {
 
     private final Graph originalGraph, auxiliaryGraph;
+    private final BridgeIdentifier bridgeIdentifier;
+
     private List<Edge> eulerTour;
     private GraphEulerClassification classification;
 
-    public FleuryEulerTourFinder(Graph graph) {
+    public FleuryEulerTourFinder(Graph graph, BridgeIdentifier bridgeIdentifier) {
         this.originalGraph = graph;
         this.auxiliaryGraph = graph.clone();
+        this.bridgeIdentifier = bridgeIdentifier;
         find();
         classify();
     }

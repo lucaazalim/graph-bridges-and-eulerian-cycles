@@ -1,8 +1,8 @@
 package br.pucminas;
 
-import br.pucminas.bridge.BridgeFinder;
-import br.pucminas.bridge.NaiveBridgeFinder;
-import br.pucminas.bridge.TarjanBridgeFinder;
+import br.pucminas.bridge.BridgeIdentifier;
+import br.pucminas.bridge.NaiveBridgeIdentifier;
+import br.pucminas.bridge.TarjanBridgeIdentifier;
 import br.pucminas.fleury.FleuryEulerTourFinder;
 
 import java.io.IOException;
@@ -11,7 +11,7 @@ import java.util.Scanner;
 
 public class Main {
 
-    public static void main(String[] args) throws IOException {
+    /*public static void main(String[] args) throws IOException {
 
         try (Scanner scanner = new Scanner(System.in)) {
 
@@ -44,7 +44,7 @@ public class Main {
                 if (algorithm == 3) {
                     findEulerTour(graph);
                 } else {
-                    findBridges(graph, algorithm == 1 ? new NaiveBridgeFinder() : new TarjanBridgeFinder());
+                    findBridges(graph, algorithm == 1 ? new NaiveBridgeIdentifier() : new TarjanBridgeIdentifier());
                 }
 
                 elapsedTime += System.currentTimeMillis() - startTime;
@@ -58,11 +58,11 @@ public class Main {
 
     }
 
-    private static void findBridges(Graph graph, BridgeFinder bridgeFinder) {
+    private static void findBridges(Graph graph, BridgeIdentifier bridgeIdentifier) {
 
         System.out.println("Finding bridges...");
 
-        List<Edge> bridges = bridgeFinder.findBridges(graph);
+        List<Edge> bridges = bridgeIdentifier.isBridge(graph, );
 
         System.out.println("Found " + bridges.size() + " bridges.");
 
@@ -76,6 +76,6 @@ public class Main {
 
         System.out.println("Graph classified as " + eulerTourFinder.getClassification() + ".");
 
-    }
+    }*/
 
 }
