@@ -8,6 +8,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
 
+/**
+ * Adapted from <a href="https://www.geeksforgeeks.org/fleurys-algorithm-for-printing-eulerian-path/">Fleury’s Algorithm for printing Eulerian Path or Circuit</a>.
+ */
 public class FleuryEulerTourFinder {
 
     private final Graph originalGraph, auxiliaryGraph;

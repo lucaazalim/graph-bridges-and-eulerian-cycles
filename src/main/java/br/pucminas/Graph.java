@@ -13,6 +13,33 @@ public class Graph implements Cloneable {
 
     private int numberOfEdges;
 
+    public static Graph fromResourceFile(String fileName) throws IOException {
+
+        Graph graph = new Graph();
+
+        try (InputStream inputStream = Graph.class.getClassLoader().getResourceAsStream(fileName)) {
+
+            if (inputStream == null) {
+                throw new IllegalArgumentException("File not found: " + fileName);
+            }
+
+            try (BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream, StandardCharsets.UTF_8))) {
+
+                String line;
+
+                while ((line = reader.readLine()) != null) {
+                    String[] edge = line.split(" ");
+                    graph.addEdge(Integer.parseInt(edge[0]), Integer.parseInt(edge[1]));
+                }
+
+            }
+
+        }
+
+        return graph;
+
+    }
+
     public int getNumberOfNodes() {
         return adjacencyList.size();
     }
@@ -84,33 +111,6 @@ public class Graph implements Cloneable {
             }
 
         }
-
-    }
-
-    public static Graph fromResourceFile(String fileName) throws IOException {
-
-        Graph graph = new Graph();
-
-        try (InputStream inputStream = Graph.class.getClassLoader().getResourceAsStream(fileName)) {
-
-            if (inputStream == null) {
-                throw new IllegalArgumentException("File not found: " + fileName);
-            }
-
-            try (BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream, StandardCharsets.UTF_8))) {
-
-                String line;
-
-                while ((line = reader.readLine()) != null) {
-                    String[] edge = line.split(" ");
-                    graph.addEdge(Integer.parseInt(edge[0]), Integer.parseInt(edge[1]));
-                }
-
-            }
-
-        }
-
-        return graph;
 
     }
 

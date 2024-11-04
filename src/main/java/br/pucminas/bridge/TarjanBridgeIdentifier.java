@@ -39,34 +39,44 @@ public class TarjanBridgeIdentifier extends BridgeIdentifier {
         disc[start] = low[start] = ++time;
 
         while (!stack.isEmpty()) {
+
             int u = stack.peek();
             Iterator<Integer> adj = adjStack.peek();
 
             if (adj.hasNext()) {
+
                 int v = adj.next();
 
-                if (disc[v] == -1) { // If `v` is not visited
+                if (disc[v] == -1) {
+
                     parent[v] = u;
                     disc[v] = low[v] = ++time;
                     stack.push(v);
                     adjStack.push(graph.getNeighbors(v).iterator());
-                } else if (v != parent[u]) { // Update the low-link value for back edges
+
+                } else if (v != parent[u]) {
+
                     low[u] = Math.min(low[u], disc[v]);
+
                 }
+
             } else {
+
                 stack.pop();
                 adjStack.pop();
 
                 if (!stack.isEmpty()) {
+
                     int parentU = stack.peek();
                     low[parentU] = Math.min(low[parentU], low[u]);
 
-                    // Check if the specific edge (u, parentU) is a bridge
                     if (low[u] > disc[parentU] &&
                             ((parentU == start && u == targetNode) || (parentU == targetNode && u == start))) {
                         return true;
                     }
+
                 }
+
             }
         }
 
