@@ -70,13 +70,16 @@ public class FleuryEulerTourFinder {
             for (int i = 0; i < neighbors.size(); i++) {
 
                 Integer v = auxiliaryGraph.getNeighbors(currentNode).get(i);
+                boolean isBridge = bridgeIdentifier.isBridge(originalGraph, new Edge(currentNode, v));
 
-                if (isValidNextEdge(currentNode, v)) {
+                if (!isBridge) {
+
                     eulerTour.add(new Edge(currentNode, v));
                     auxiliaryGraph.removeEdge(currentNode, v);
                     stack.push(v);
                     foundValidEdge = true;
                     break;
+
                 }
 
             }
@@ -86,16 +89,6 @@ public class FleuryEulerTourFinder {
             }
 
         }
-
-    }
-
-    private boolean isValidNextEdge(Integer u, Integer v) {
-
-        if (auxiliaryGraph.getNeighbors(u).size() == 1) {
-            return true;
-        }
-
-        return !bridgeIdentifier.isBridge(originalGraph, new Edge(u, v));
 
     }
 
