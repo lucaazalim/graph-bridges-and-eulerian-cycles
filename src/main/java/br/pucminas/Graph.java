@@ -84,12 +84,12 @@ public class Graph implements Cloneable {
         Set<Integer> visited = new HashSet<>();
         Integer startNode = adjacencyList.keySet().iterator().next();
 
-        depthFirstSearchIterative(startNode, visited);
+        depthFirstSearch(startNode, visited);
 
         return visited.size() == adjacencyList.size();
     }
 
-    private void depthFirstSearchIterative(int startNode, Set<Integer> visited) {
+    private void depthFirstSearch(int startNode, Set<Integer> visited) {
 
         Stack<Integer> stack = new Stack<>();
         stack.push(startNode);

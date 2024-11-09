@@ -94,7 +94,7 @@ public class FleuryEulerTourFinder {
             return true;
         }
 
-        return !bridgeIdentifier.isBridge(auxiliaryGraph, new Edge(u, v));
+        return !bridgeIdentifier.isBridge(originalGraph, new Edge(u, v));
 
     }
 
