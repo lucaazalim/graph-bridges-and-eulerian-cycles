@@ -40,6 +40,7 @@ public class FleuryEulerTourFinder {
         }
 
         int u = 0;
+
         for (int i = 0; i < auxiliaryGraph.getNumberOfNodes(); i++) {
             if (auxiliaryGraph.getNeighbors(i).size() % 2 == 1) {
                 u = i;
@@ -100,21 +101,22 @@ public class FleuryEulerTourFinder {
 
     private void classify() {
 
-        if (eulerTour.size() == originalGraph.getNumberOfEdges()) {
+        int oddDegreeCount = 0;
 
-            var firstEdge = eulerTour.getFirst();
-            var lastEdge = eulerTour.getLast();
-
-            if (firstEdge.node1() == lastEdge.node2()) {
-                classification = GraphEulerClassification.EULERIAN;
-            } else {
-                classification = GraphEulerClassification.SEMI_EULERIAN;
+        for (int i = 0; i < originalGraph.getNumberOfNodes(); i++) {
+            if (originalGraph.getNeighbors(i).size() % 2 != 0) {
+                oddDegreeCount++;
             }
+        }
 
+        if (oddDegreeCount == 0) {
+            classification = GraphEulerClassification.EULERIAN;
+        } else if (oddDegreeCount == 2) {
+            classification = GraphEulerClassification.SEMI_EULERIAN;
         } else {
             classification = GraphEulerClassification.NON_EULERIAN;
         }
-
     }
+
 
 }
