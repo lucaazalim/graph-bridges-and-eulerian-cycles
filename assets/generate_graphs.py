@@ -1,33 +1,37 @@
 import networkx as nx
 
-# Generates a cycle graph, which is always Eulerian
-def generate_eulerian_graph(n: int) -> nx.Graph:
-    n -= 1
-    graph = nx.Graph()
-    graph.add_nodes_from(range(n + 1))
-    for j in range(n):
-        graph.add_edge(j, j + 1)
-    graph.add_edge(n, 0)
-    return graph
 
-# Generates a linear graph, which is always semi-Eulerian
+# Generates a cycle graph
+def generate_eulerian_graph(n: int) -> nx.Graph:
+    return nx.cycle_graph(n)
+
+
+# Generates a linear graph with two additional edges
 def generate_semieulerian_graph(n: int) -> nx.Graph:
     graph = nx.Graph()
     graph.add_nodes_from(range(n))
     for j in range(n - 1):
         graph.add_edge(j, j + 1)
+    graph.add_edge(0, n - 1)
+    graph.add_edge(1, n - 1)
     return graph
 
-# Generates a linear graph with an additional edge, making it non-Eulerian
+
+# Generates a linear graph with additional edges
 def generate_non_eulerian_graph(n: int) -> nx.Graph:
-    graph = generate_semieulerian_graph(n)
-    if n > 3:
-        graph.add_edge(1, 3)  # Adding an edge to make the graph non-Eulerian
+    graph = nx.Graph()
+    graph.add_nodes_from(range(n))
+    for j in range(n - 1):
+        graph.add_edge(j, j + 1)
+    for k in range(11):
+        graph.add_edge(k, n - k)
     return graph
+
 
 # Writes the graph to a file
 def write_graph(graph: nx.Graph, filename: str):
     nx.write_edgelist(graph, filename, data=False)
+
 
 N = 10
 
