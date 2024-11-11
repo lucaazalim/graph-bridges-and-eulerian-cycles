@@ -1,0 +1,112 @@
+\documentclass[a4paper,12pt,Times]{article}
+\usepackage{abakos}  %pacote com padrão da Abakos baseado no padrão da PUC
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Capa da revista
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\setcounter{page}{80} %iniciar contador de pagina de valor especificado
+\newcommand{\monog}{Análise Comparativa de Métodos para Identificação de Pontes: Abordagens Naïve e Tarjan Aplicadas ao Algoritmo de Fleury}
+\newcommand{\monogES}{Comparative Analysis of Methods for Bridge Identification: Naïve and Tarjan Approaches Applied to Fleury's Algorithm}
+\newcommand{\tipo}{Artigo }  % Especificar a seção tipo do trabalho: Artigo, Resumo, Tese, Dociê etc
+\newcommand{\origem}{Brasil}
+\newcommand{\editorial}{\textbf{Abakos}, Belo Horizonte,v. 1, n. 1, p. 00-00, Nov. 2024 - ISSN: 2316-9451}  % p. xx-xx – páginas inicial-final do artigo
+% \newcommand{\lcc}{\scriptsize{Licença Creative Commons Attribution-NonCommercial-NoDerivs 3.0 Unported}}
+
+%%%%%%%%%%%%%%%%%INFORMAÇÕES SOBRE AUTOR PRINCIPAL %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\AutorA}{Luca Ferrari Azalim}
+\newcommand{\funcaoA}{}
+\newcommand{\emailA}{lucaazalim@gmail.com}
+\newcommand{\cursA}{Graduação em Engenharia de Software PUC Minas}
+% 
+
+\newcommand{\AutorB}{Fernando Antônio Ferreira Ibrahim}
+\newcommand{\funcaoB}{}
+\newcommand{\emailB}{fernandofibrahim@gmail.com}
+\newcommand{\cursB}{Graduação em Engenharia de Software PUC Minas}
+% 
+% \newcommand{\AutorC}{Giovanni Candido da Silva}
+% \newcommand{\funcaoC}{Bacharel em Sistemas de Informação}
+% \newcommand{\emailC}{giovanni@pucminas.br}
+% \newcommand{\cursC}{Instituto de Ciências Exatas e de Informática da PUC Minas}
+
+% Definir macros para o nome da Instituição, da Faculdade, etc.
+\newcommand{\univ}{Pontifícia Universidade Católica de Minas Gerais}
+
+\newcommand{\keyword}[1]{\textsf{#1}}
+
+\begin{document}
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %% Pagina de titulo
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{flushleft}
+
+\begin{minipage} [c][5cm][b]{16.5cm} % a primeira minipágina tem uma altura de 1.5cm e uma largura de 2.3cm.
+% comando que introduz o logo da escola que nesta altura já terá de estar na pasta imagens que 
+%por sua vez está na pasta onde se guardou o arquivo tex. E introduzimos essa imagem com a mesma altura da minipage.
+\includegraphics[scale=1.1]{figuras/pucmg.png} 
+\end{minipage}
+
+ \vspace{0cm} {
+ \singlespacing \Large{\monog \symbolfootnote[1]{Artigo apresentado à Revista Abakos} \\ }
+  \normalsize{\monogES}
+ }
+\end{flushleft}
+\begin{flushright}
+\singlespacing 
+\normalsize{\AutorA \footnote{\funcaoA \cursA, \origem -- \emailA }} \\
+\normalsize{\AutorB \footnote{\funcaoB \cursB, \origem -- \emailB}} \\
+% \normalsize{\AutorB \footnote{\funcaoB, E-mail:\emailB \\ \cursB, \origem. }} \\
+% \normalsize{\AutorC \footnote{\funcaoC, E-mail:\emailC \\ \cursC, \origem. }} \\
+% \normalsize{\AutorD \footnote{\funcaoD \\ Pais de origem: \origemD. E-mail: \emailD}} \\
+%deixar com o valor `0` e usar o '*' no inicio da frase
+% \symbolfootnote[0]{Artigo recebido em 10 de julho de 1983 e aprovado em 29 de maio 2012}
+\end{flushright}
+\thispagestyle{empty}
+\begin{abstract}
+\noindent
+O presente trabalho tem como objetivo implementar um algoritmo para a identificação de trajetos e ciclos eulerianos em grafos, com foco na comparação de diferentes métodos para a identificação de pontes. Serão consideradas as implementações dos métodos \textit{naïve} e \textit{Tarjan}, que são fundamentais para a execução do algoritmo de Fleury, escolhido devido à sua popularidade e baixa complexidade computacional. O estudo visa avaliar a eficiência de ambos os métodos na identificação de pontes, elemento crucial para a construção de trajetos e ciclos eulerianos. Espera-se que este projeto contribua para uma melhor compreensão da performance de diferentes abordagens na solução de problemas relacionados à teoria dos grafos e à otimização de rotas.
+\\\textbf{\keyword{Palavras-chave: }} Caminho euleriano, Ciclo euleriano, Algoritmo de \textit{Fleury}, Identificação de pontes, Teoria dos grafos, Comparação de métodos.
+\end{abstract}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage 
+\selectlanguage{english}
+\begin{abstract}
+\noindent
+This paper aims to implement an algorithm for identifying Eulerian paths and cycles in graphs, with an emphasis on comparing different methods for bridge identification. The \textit{naïve} and \textit{Tarjan} methods will be considered, as they are key components for the execution of \textit{Fleury's} algorithm, chosen for its popularity and low computational complexity. The study seeks to evaluate the efficiency of both methods in identifying bridges, a crucial element for constructing Eulerian paths and cycles. It is expected that this project will contribute to a better understanding of the performance of different approaches in solving graph theory problems and optimizing routes.
+\\\textbf{\keyword{Keywords: }} Eulerian path, Eulerian cycle, Fleury's algorithm, Bridge identification, Graph theory, Method comparison.
+\end{abstract}
+
+
+
+
+\end{abstract}
+
+\selectlanguage{brazilian}
+ \onehalfspace  % espaçamento 1.5 entre linhas
+ \setlength{\parindent}{1.25cm}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% INICIO DO TEXTO
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\include{textos}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% FIM DO TEXTO
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \selectlanguage{brazil}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Inicio bibliografia
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+ \newpage
+ \singlespace{
+ \bibliographystyle{abntex2-alf}
+ \bibliography{bibliografia}
+ }
+
+\end{document}
